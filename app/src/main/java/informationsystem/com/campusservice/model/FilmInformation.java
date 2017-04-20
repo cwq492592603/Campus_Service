@@ -3,12 +3,13 @@ package informationsystem.com.campusservice.model;
 /**
  * Created by Chen on 2017/3/27.
  */
-public class FilmInfomation {
+public class FilmInformation {
     private int _id;
+    private String poster;
     private String name;
     private String type;
     private String country;
-    private int duration;
+    private String duration;
     private String player;
     private String synopsis;
 
@@ -18,6 +19,14 @@ public class FilmInfomation {
 
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public String getPoster() {
+        return poster;
     }
 
     public String getName() {
@@ -52,11 +61,11 @@ public class FilmInfomation {
         this.player = player;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

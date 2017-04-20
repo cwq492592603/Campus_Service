@@ -50,6 +50,9 @@ public class MainActivity extends Activity implements OnCheckedChangeListener {
         if(fragment4 != null){
             beginTransaction.hide(fragment4);
         }
+        if(fragment5 != null){
+            beginTransaction.hide(fragment5);
+        }
         switch (checkedId){
             case R.id.main:
                 if(fragment1 == null) {
@@ -60,8 +63,6 @@ public class MainActivity extends Activity implements OnCheckedChangeListener {
                 }
                 break;
             case R.id.main1:{
-//                Intent intent = new Intent(this,Attraction.class);
-//                startActivity(intent);
                 if(fragment2 == null) {
                     AttractionFragment attractionFragment = new AttractionFragment();
                     beginTransaction.add(R.id.frame, attractionFragment, "Attraction");
@@ -71,12 +72,22 @@ public class MainActivity extends Activity implements OnCheckedChangeListener {
                 break;
             }
             case R.id.main2:{
+                if(fragment3 == null) {
+                    FilmFragment filmFragment = new FilmFragment();
+                    beginTransaction.add(R.id.frame, filmFragment, "Film_Info");
+                }else {
+                    beginTransaction.show(fragment3);
+                }
                 break;
             }
             case R.id.main3:{
                 if(fragment5 == null) {
-                    LoginFragment loginFragment = new LoginFragment();
-                    beginTransaction.add(R.id.frame, loginFragment, "Login");
+                    if (fragment4 == null) {
+                        LoginFragment loginFragment = new LoginFragment();
+                        beginTransaction.add(R.id.frame, loginFragment, "Login");
+                    }else {
+                        beginTransaction.show(fragment4);
+                    }
                 }else{
                     beginTransaction.show(fragment5);
                 }

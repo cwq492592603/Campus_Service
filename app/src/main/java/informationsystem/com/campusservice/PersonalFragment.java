@@ -69,7 +69,6 @@ public class PersonalFragment extends Fragment implements OnClickListener, OnIte
         setting.setOnClickListener(this);
 
 
-
         return view;
     }
 
@@ -103,7 +102,14 @@ public class PersonalFragment extends Fragment implements OnClickListener, OnIte
             if(resultCode == getActivity().RESULT_OK){
                 LoginFragment loginFragment = new LoginFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame,loginFragment);
+                Fragment fragment5 = getFragmentManager().findFragmentByTag("Personal_Info");
+                transaction.remove(fragment5);
+                Fragment fragment4 = getFragmentManager().findFragmentByTag("Login");
+                if (fragment4 == null){
+                    transaction.replace(R.id.frame,loginFragment,"Login");
+                }else{
+                    transaction.show(fragment4);
+                }
                 transaction.commit();
             }
         }

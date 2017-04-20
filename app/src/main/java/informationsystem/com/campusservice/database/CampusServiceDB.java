@@ -1,6 +1,5 @@
 package informationsystem.com.campusservice.database;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import informationsystem.com.campusservice.model.FilmInfomation;
+import informationsystem.com.campusservice.model.FilmInformation;
 import informationsystem.com.campusservice.model.PersonalInfomation;
 
 /**
@@ -127,15 +126,15 @@ public class CampusServiceDB {
     /**
      * 将FilmInfo实例存储到数据库
      */
-    public void saveFilmInfo(FilmInfomation filmInfomation) {
-        if (filmInfomation != null) {
+    public void saveFilmInfo(FilmInformation filmInformation) {
+        if (filmInformation != null) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put("film_name", filmInfomation.getName());
-            contentValues.put("film_type", filmInfomation.getType());
-            contentValues.put("film_country", filmInfomation.getCountry());
-            contentValues.put("film_duration", filmInfomation.getDuration());
-            contentValues.put("film_player", filmInfomation.getPlayer());
-            contentValues.put("film_synopsis", filmInfomation.getSynopsis());
+            contentValues.put("film_name", filmInformation.getName());
+            contentValues.put("film_type", filmInformation.getType());
+            contentValues.put("film_country", filmInformation.getCountry());
+            contentValues.put("film_duration", filmInformation.getDuration());
+            contentValues.put("film_player", filmInformation.getPlayer());
+            contentValues.put("film_synopsis", filmInformation.getSynopsis());
             db.insert("FilmInfo", null, contentValues);
         }
     }
@@ -143,17 +142,17 @@ public class CampusServiceDB {
     /**
      * 从数据库读取电影信息
      */
-    public List<FilmInfomation> loadFilmInfo() {
-        List<FilmInfomation> list = new ArrayList<>();
+    public List<FilmInformation> loadFilmInfo() {
+        List<FilmInformation> list = new ArrayList<>();
         Cursor cursor = db.query("FilmInfo", null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                FilmInfomation filmInfo = new FilmInfomation();
+                FilmInformation filmInfo = new FilmInformation();
                 filmInfo.set_id(cursor.getInt(cursor.getColumnIndex("_id")));
                 filmInfo.setName(cursor.getString(cursor.getColumnIndex("film_name")));
                 filmInfo.setType(cursor.getString(cursor.getColumnIndex("film_type")));
                 filmInfo.setCountry(cursor.getString(cursor.getColumnIndex("film_country")));
-                filmInfo.setDuration(cursor.getInt(cursor.getColumnIndex("film_duration")));
+                filmInfo.setDuration(cursor.getString(cursor.getColumnIndex("film_duration")));
                 filmInfo.setPlayer(cursor.getString(cursor.getColumnIndex("film_player")));
                 filmInfo.setSynopsis(cursor.getString(cursor.getColumnIndex("film_synopsis")));
                 list.add(filmInfo);

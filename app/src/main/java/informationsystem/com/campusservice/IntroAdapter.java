@@ -24,14 +24,20 @@ public class IntroAdapter extends ArrayAdapter<SchoolProfile> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         SchoolProfile schoolProfile = getItem(position);
-        View view;
+        ViewHolder viewHolder;
         if(convertView == null){
-            view = LayoutInflater.from(getContext()).inflate(resourceId,null);
+            convertView = LayoutInflater.from(getContext()).inflate(resourceId,null);
+            viewHolder = new ViewHolder();
+            viewHolder.schoolProTitle = (TextView)convertView.findViewById(R.id.introduction);
+            convertView.setTag(viewHolder);
         }else{
-            view = convertView;
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        TextView schoolProfileTitle = (TextView)view.findViewById(R.id.introduction);
-        schoolProfileTitle.setText(schoolProfile.getTitle());
-        return view;
+        viewHolder.schoolProTitle.setText(schoolProfile.getTitle());
+        return convertView;
+    }
+
+    class ViewHolder{
+        TextView schoolProTitle;
     }
 }
